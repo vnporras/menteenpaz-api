@@ -15,4 +15,8 @@ class ConsultantService(
         val response = consultantRepository.save(consultantDto.toEntity())
         return response.toDTO()
     }
+
+    fun getConsultants(): List<ConsultantDto> {
+        return consultantRepository.findAll().map { it.toDTO() }
+    }
 }

@@ -15,5 +15,6 @@ data class Consultant(
     @Column(name = "last_name")
     val lastName: String,
     val birthday: LocalDate,
+    @Enumerated(EnumType.STRING)
     val sex: SexEnum
 )
