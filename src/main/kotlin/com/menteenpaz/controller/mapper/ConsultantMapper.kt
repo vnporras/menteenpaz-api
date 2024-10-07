@@ -1,7 +1,7 @@
-package com.menteenpaz.domain.mapper
+package com.menteenpaz.controller.mapper
 
 import com.menteenpaz.domain.Consultant
-import com.menteenpaz.domain.dto.ConsultantDto
+import com.menteenpaz.controller.dto.ConsultantDto
 import com.menteenpaz.domain.enums.SexEnum
 
 

@@ -1,10 +1,11 @@
 package com.menteenpaz.service
 
-import com.menteenpaz.domain.dto.ConsultantDto
-import com.menteenpaz.domain.mapper.toDTO
-import com.menteenpaz.domain.mapper.toEntity
+import com.menteenpaz.controller.dto.ConsultantDto
+import com.menteenpaz.controller.mapper.toDTO
+import com.menteenpaz.controller.mapper.toEntity
 import com.menteenpaz.repository.ConsultantRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class ConsultantService(
@@ -18,5 +19,14 @@ class ConsultantService(
 
     fun getConsultants(): List<ConsultantDto> {
         return consultantRepository.findAll().map { it.toDTO() }
+    }
+
+    fun getConsultantById(id: UUID): ConsultantDto? {
+        val response = consultantRepository.findById(id)
+        return if (response.isPresent) {
+            response.get().toDTO()
+        } else {
+            null
+        }
     }
 }

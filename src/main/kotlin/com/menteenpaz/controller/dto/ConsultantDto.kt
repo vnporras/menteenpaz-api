@@ -1,4 +1,4 @@
-package com.menteenpaz.domain.dto
+package com.menteenpaz.controller.dto
 
 import java.time.LocalDate
 import java.util.*

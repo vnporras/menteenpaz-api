@@ -1,13 +1,11 @@
 package com.menteenpaz.controller
 
-import com.menteenpaz.domain.dto.ConsultantDto
+import com.menteenpaz.controller.dto.ConsultantDto
 import com.menteenpaz.service.ConsultantService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 @RestController
 class ConsultantController(
@@ -22,5 +20,15 @@ class ConsultantController(
     @GetMapping("/consultants")
     fun getConsultants(): ResponseEntity<List<ConsultantDto>> {
         return ResponseEntity(consultantService.getConsultants(), HttpStatus.OK)
+    }
+
+    @GetMapping("/consultants/{id}")
+    fun getConsultantById(@PathVariable("id") id: UUID): ResponseEntity<ConsultantDto> {
+        val consultant = consultantService.getConsultantById(id)
+        return if (consultant != null) {
+            ResponseEntity(consultant, HttpStatus.OK)
+        } else {
+            ResponseEntity(HttpStatus.NOT_FOUND)
+        }
     }
 }
