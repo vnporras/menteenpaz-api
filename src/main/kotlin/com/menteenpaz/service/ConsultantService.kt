@@ -42,4 +42,8 @@ class ConsultantService(
         }
         return consultantRepository.save(consultantDto.toEntity()).toDTO()
     }
+
+    fun deleteConsultant(id: UUID) {
+        consultantRepository.deleteById(id)
+    }
 }

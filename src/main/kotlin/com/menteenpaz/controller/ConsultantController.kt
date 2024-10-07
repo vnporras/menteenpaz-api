@@ -42,4 +42,9 @@ class ConsultantController(
             ResponseEntity(HttpStatus.NOT_FOUND)
         }
     }
+
+    @DeleteMapping("/consultants/{id}")
+    fun deleteConsultant(@PathVariable("id") id: UUID): ResponseEntity<Unit> {
+        return ResponseEntity(consultantService.deleteConsultant(id), HttpStatus.NO_CONTENT)
+    }
 }
