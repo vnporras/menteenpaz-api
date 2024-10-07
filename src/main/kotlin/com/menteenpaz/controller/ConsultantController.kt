@@ -5,7 +5,7 @@ import com.menteenpaz.service.ConsultantService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.UUID
+import java.util.*
 
 @RestController
 class ConsultantController(
@@ -25,6 +25,17 @@ class ConsultantController(
     @GetMapping("/consultants/{id}")
     fun getConsultantById(@PathVariable("id") id: UUID): ResponseEntity<ConsultantDto> {
         val consultant = consultantService.getConsultantById(id)
+        return if (consultant != null) {
+            ResponseEntity(consultant, HttpStatus.OK)
+        } else {
+            ResponseEntity(HttpStatus.NOT_FOUND)
+        }
+    }
+
+    @PutMapping("/consultants/{id}")
+    fun updateConsultant(@PathVariable("id") id: UUID, @RequestBody consultantDto: ConsultantDto): ResponseEntity<ConsultantDto> {
+        val consultant = consultantService.updateConsultant(id, consultantDto)
+
         return if (consultant != null) {
             ResponseEntity(consultant, HttpStatus.OK)
         } else {

@@ -29,4 +29,17 @@ class ConsultantService(
             null
         }
     }
+
+    fun updateConsultant(id : UUID, consultantDto: ConsultantDto): ConsultantDto? {
+        val response = consultantRepository.findById(id)
+
+        if (!response.isPresent) {
+            return null
+        }
+
+        if (id != consultantDto.id) {
+            return null
+        }
+        return consultantRepository.save(consultantDto.toEntity()).toDTO()
+    }
 }
