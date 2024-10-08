@@ -8,5 +8,7 @@ data class ConsultantDto(
     val name: String,
     val lastName: String,
     val birthday: LocalDate,
-    val sex: String
+    val sex: String,
+    val therapistName: String,
+    val therapist: TherapistDto
 )
